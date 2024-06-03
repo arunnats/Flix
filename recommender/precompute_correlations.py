@@ -1,16 +1,9 @@
-from contextlib import asynccontextmanager
-from fastapi import FastAPI
 import pandas as pd
 
-# Define the FastAPI app
-app = FastAPI()
-
-# Function to perform setup tasks and store data in the app object
-def setup_data():
-    global app
+def precompute_and_save():
     print("Reading ratings and movie titles data...")
-    df_ratings = pd.read_csv('./ratings.csv', sep=',', usecols=['userId', 'movieId', 'rating'])
-    df_titles = pd.read_csv("./movies.csv", sep=',', usecols=['movieId', 'title'])
+    df_ratings = pd.read_csv('./data/ratings.csv', sep=',', usecols=['userId', 'movieId', 'rating'])
+    df_titles = pd.read_csv("./data/movies.csv", sep=',', usecols=['movieId', 'title'])
     print("Done reading.")
 
     print("Merging dataframes...")
@@ -21,8 +14,8 @@ def setup_data():
     ratings = pd.DataFrame(df.groupby('title')['rating'].mean())
     ratings['num of ratings'] = pd.DataFrame(df.groupby('title')['rating'].count())
 
-    min_reviews_movie = 5
-    min_reviews_user = 200
+    min_reviews_movie = 15
+    min_reviews_user = 150
 
     # Filter movies with at least 'x' reviews
     print("Filtering movies...")
@@ -46,25 +39,10 @@ def setup_data():
     corr_matrix = moviemat_filtered.corr(method='pearson')
     print("Correlation matrix calculation complete.")
 
-    # Store data in the app object
-    app.ratings = ratings
-    app.moviemat = moviemat_filtered
-    app.corr_matrix = corr_matrix
+    # Save the correlation matrix and ratings DataFrame to disk
+    corr_matrix.to_pickle('correlation_matrix.pkl')
+    ratings.to_pickle('ratings.pkl')
+    print("Correlation matrix and ratings saved to disk.")
 
-# Define lifespan context manager to perform setup tasks
-@asynccontextmanager
-async def lifespan(app):
-    setup_data()
-    yield
-
-# Set up the lifespan context manager
-app.router.lifespan_context = lifespan
-
-# Define the GET endpoint
-@app.get("/usage/")
-async def get_usage(movie_title: str):
-    corr_movie = app.corr_matrix[movie_title]
-    corr_movie = pd.DataFrame(corr_movie, columns=['Correlation'])
-    corr_movie.dropna(inplace=True)
-    corr_movie = corr_movie.join(app.ratings['num of ratings'])
-    return corr_movie[corr_movie['num of ratings'] > 10000].sort_values('Correlation', ascending=False).head()
+if __name__ == "__main__":
+    precompute_and_save()
