@@ -1,43 +1,70 @@
+from contextlib import asynccontextmanager
+from fastapi import FastAPI
 import pandas as pd
 
-def filter_movies(df, min_reviews_movie):
-    popular_movies = df['title'].value_counts()
-    top_movies = popular_movies[popular_movies >= min_reviews_movie].index
-    return df[df['title'].isin(top_movies)]
+# Define the FastAPI app
+app = FastAPI()
 
-def filter_users(df, min_reviews_user):
-    users_with_enough_reviews = df['userId'].value_counts()
-    active_users = users_with_enough_reviews[users_with_enough_reviews >= min_reviews_user].index
-    return df[df['userId'].isin(active_users)]
+# Function to perform setup tasks and store data in the app object
+def setup_data():
+    global app
+    print("Reading ratings and movie titles data...")
+    df_ratings = pd.read_csv('./ratings.csv', sep=',', usecols=['userId', 'movieId', 'rating'])
+    df_titles = pd.read_csv("./movies.csv", sep=',', usecols=['movieId', 'title'])
+    print("Done reading.")
 
-def create_pivot_table(df):
-    return df.pivot_table(index='userId', columns='title', values='rating')
+    print("Merging dataframes...")
+    df = pd.merge(df_ratings, df_titles, on='movieId')
 
-def find_similar_movies(moviemat_filtered, enteredmovie_title, min_num_ratings):
-    enteredmovie_user_ratings = moviemat_filtered[enteredmovie_title]
-    similar_to_enteredmovie = moviemat_filtered.corrwith(enteredmovie_user_ratings)
-    corr_enteredmovie = pd.DataFrame(similar_to_enteredmovie, columns=['Correlation'])
-    corr_enteredmovie.dropna(inplace=True)
-    corr_enteredmovie = corr_enteredmovie.join(ratings['num of ratings'])
-    return corr_enteredmovie[corr_enteredmovie['num of ratings'] > min_num_ratings].sort_values('Correlation', ascending=False)
-
-def main():
-    df = pd.read_csv('./ratings.csv', sep=',', usecols=['userId', 'movieId', 'rating'])
-    movie_titles = pd.read_csv("./movies.csv", sep=',', usecols=['movieId', 'title'])
-    df = pd.merge(df, movie_titles, on='movieId')
+    # Calculate number of ratings per movie
+    print("Calculating ratings per movie...")
+    ratings = pd.DataFrame(df.groupby('title')['rating'].mean())
+    ratings['num of ratings'] = pd.DataFrame(df.groupby('title')['rating'].count())
 
     min_reviews_movie = 5
-    df_filtered_movies = filter_movies(df, min_reviews_movie)
-
     min_reviews_user = 200
-    df_filtered_users = filter_users(df_filtered_movies, min_reviews_user)
 
-    moviemat_filtered = create_pivot_table(df_filtered_users)
+    # Filter movies with at least 'x' reviews
+    print("Filtering movies...")
+    popular_movies = df['title'].value_counts()
+    top_movies = popular_movies[popular_movies >= min_reviews_movie].index
+    df_filtered_movies = df[df['title'].isin(top_movies)]
 
-    enteredmovie_title = 'Rain Man (1988)'
-    min_num_ratings = 100
-    similar_movies = find_similar_movies(moviemat_filtered, enteredmovie_title, min_num_ratings)
-    print(similar_movies.head())
+    # Filter users with at least 'x' reviews
+    print("Filtering users...")
+    users_with_enough_reviews = df_filtered_movies['userId'].value_counts()
+    active_users = users_with_enough_reviews[users_with_enough_reviews >= min_reviews_user].index
+    df_filtered_users = df_filtered_movies[df_filtered_movies['userId'].isin(active_users)]
 
-if __name__ == "__main__":
-    main()
+    # Create the pivot table
+    print("Creating pivot table...")
+    moviemat_filtered = df_filtered_users.pivot_table(index='userId', columns='title', values='rating')
+    print("Setup complete.")
+
+    # Calculate the correlation matrix between movies
+    print("Calculating correlation matrix...")
+    corr_matrix = moviemat_filtered.corr(method='pearson')
+    print("Correlation matrix calculation complete.")
+
+    # Store data in the app object
+    app.ratings = ratings
+    app.moviemat = moviemat_filtered
+    app.corr_matrix = corr_matrix
+
+# Define lifespan context manager to perform setup tasks
+@asynccontextmanager
+async def lifespan(app):
+    setup_data()
+    yield
+
+# Set up the lifespan context manager
+app.router.lifespan_context = lifespan
+
+# Define the GET endpoint
+@app.get("/usage/")
+async def get_usage(movie_title: str):
+    corr_movie = app.corr_matrix[movie_title]
+    corr_movie = pd.DataFrame(corr_movie, columns=['Correlation'])
+    corr_movie.dropna(inplace=True)
+    corr_movie = corr_movie.join(app.ratings['num of ratings'])
+    return corr_movie[corr_movie['num of ratings'] > 10000].sort_values('Correlation', ascending=False).head()

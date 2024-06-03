@@ -8,6 +8,9 @@ df_titles = pd.read_csv("./movies.csv", sep=',', usecols=['movieId', 'title'])
 # Merge the dataframes on 'movieId'
 df = pd.merge(df_ratings, df_titles, on='movieId')
 
+ratings = pd.DataFrame(df.groupby('title')['rating'].mean())
+ratings['num of ratings'] = pd.DataFrame(df.groupby('title')['rating'].count())
+
 min_reviews_movie = 5
 min_reviews_user = 200
 
