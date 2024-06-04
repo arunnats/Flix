@@ -9,6 +9,9 @@ lerna-debug.log*
 ratings.csv
 movies.csv
 __pycache__/
+movieRecommender.cpython-310.pyc
+movie_recommender_precomputed.cpython-310.pyc
+*.pyc
 correlation_matrix.pkl
 ratings.pkl
 

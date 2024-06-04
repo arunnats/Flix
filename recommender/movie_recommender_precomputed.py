@@ -42,7 +42,7 @@ async def get_usage(movie_title: str):
     print(f"Correlation data after joining ratings:\n{corr_movie_df.head()}")  # Log after joining ratings
     
     # Filter movies with enough ratings
-    corr_movie_df = corr_movie_df[corr_movie_df['num of ratings'] > 10]
+    corr_movie_df = corr_movie_df[corr_movie_df['num of ratings'] > 700]
     
     # Sort by correlation in descending order
     corr_movie_df = corr_movie_df.sort_values(by='Correlation', ascending=False)
