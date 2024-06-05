@@ -6,27 +6,27 @@ import styles from "./searchBar.module.css";
 const SearchBar = ({ setResults }) => {
 	const [input, setInput] = useState("");
 
-	const fetchData = (value) => {
-		fetch("https://jsonplaceholder.typicode.com/users")
-			.then((response) => response.json())
-			.then((json) => {
-				const results = json.filter((user) => {
-					return (
-						value &&
-						user &&
-						user.name &&
-						user.name.toLowerCase().includes(value.toLowerCase())
-					);
-				});
-				setResults(results);
-			});
+	const fetchData = async (value) => {
+		console.log(value);
+		try {
+			const response = await axios.get(
+				`http://localhost:5000/search?q=${value}`
+			);
+			console.log(response.data);
+			setResults(response.data);
+		} catch (error) {
+			console.error("Error fetching data:", error);
+		}
 	};
 
 	const handleChange = (value) => {
 		setInput(value);
-		fetchData(value);
+		if (value === "") {
+			setResults([]);
+		} else {
+			fetchData(value);
+		}
 	};
-
 	return (
 		<div className={styles.inputWrapper}>
 			<FaSearch id={styles.searchIcon} />

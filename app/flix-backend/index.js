@@ -18,7 +18,15 @@ const pool = mysql.createPool({
 // Simple in-memory cache
 const cache = new Map();
 
+app.use((req, res, next) => {
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+	res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+	next();
+});
+
 app.get("/search", async (req, res) => {
+	console.log("search req");
 	const query = req.query.q;
 	if (!query) {
 		return res.status(400).json({ error: "Query parameter 'q' is required" });

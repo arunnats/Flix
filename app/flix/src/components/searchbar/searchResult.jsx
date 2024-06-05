@@ -1,12 +1,9 @@
 import React from "react";
 import styles from "./searchResult.module.css";
 
-const SearchResult = ({ result }) => {
+const SearchResult = ({ result, onClick }) => {
 	return (
-		<div
-			className={styles.searchResult}
-			onClick={() => alert(`You selected ${result}!`)}
-		>
+		<div className={styles.searchResult} onClick={() => onClick(result)}>
 			{result}
 		</div>
 	);
