@@ -28,7 +28,7 @@ const SearchBar = ({ setResults }) => {
 		}
 	};
 	return (
-		<div className="flex flex-col mx-auto items-center">
+		<div className="flex flex-col mx-auto items-center min-w-80">
 			<h1 className="mb-5">Enter a Movie Title!</h1>
 			<div className={styles.inputWrapper}>
 				<FaSearch id={styles.searchIcon} />

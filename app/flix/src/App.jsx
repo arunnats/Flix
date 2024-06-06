@@ -26,26 +26,25 @@ function App() {
 
 	return (
 		<>
-			<div className="bg-base-100 min-h-screen">
+			<div className="bg-base-100 min-h-screen relative">
 				<Navbar />
 				<Hero />
-				<div className="flex flex-col w-96 mx-auto items-center">
+				<div className="flex flex-col w-full md:w-96 mx-auto items-center">
 					<br />
-					{recommendations && recommendations.length > 0 && (
-						<Results recommendations={recommendations} />
-					)}
-					<br />
-					<DataVisComp />
-					<br />
-					<div className="search-bar-container">
+					<div className="search-bar-container w-full flex flex-col justify-center items-center">
 						<SearchBar setResults={setResults} />
 						{results && results.length > 0 && (
 							<SearchResultsList
 								results={results}
 								onResultClick={getRecommendations}
+								className="bg-white shadow-lg rounded-lg overflow-hidden"
 							/>
 						)}
+						<br />
+						<Results className="relative" recommendations={recommendations} />
 					</div>
+					<br />
+					<DataVisComp />
 				</div>
 			</div>
 		</>
