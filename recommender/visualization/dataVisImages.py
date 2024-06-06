@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from matplotlib.font_manager import FontProperties
 
 # Load the data
 ratings = pd.read_csv('../data/ratings.csv', sep=',', usecols=['userId', 'movieId', 'rating'])
@@ -19,13 +20,16 @@ colors = ["#E30C32", "#070521"]
 def apply_plot_style():
     SIZE_DEFAULT = 14
     SIZE_LARGE = 16
-    plt.rc("font", family="Roboto-medium")
+    plt.rc("font", family="Roboto-Medium")
     plt.rc("font", weight="normal")
     plt.rc("font", size=SIZE_DEFAULT)
     plt.rc("axes", titlesize=SIZE_LARGE)
     plt.rc("axes", labelsize=SIZE_LARGE)
     plt.rc("xtick", labelsize=SIZE_DEFAULT)
     plt.rc("ytick", labelsize=SIZE_DEFAULT)
+    
+    prop = FontProperties(fname="Roboto-Medium.ttf")  # Provide the path to your TTF file
+    plt.rcParams['font.family'] = prop.get_name()
 
 # Distribution of Number of Ratings
 apply_plot_style()
@@ -103,7 +107,7 @@ plt.close()
 
 # Jointplot of Number of Ratings Given by Users vs Average Rating
 apply_plot_style()
-sns.jointplot(x='average_rating', y='num_of_ratings', data=user_stats, alpha=0.5, kind='scatter', color=colors[1], height=6, ratio=1.25)
+sns.jointplot(x='average_rating', y='num_of_ratings', data=user_stats, alpha=0.5, kind='scatter', color=colors[1],  height=6, ratio=4)
 plt.xlabel('Average Rating')
 plt.ylabel('Number of Ratings')
 plt.title('Number of Ratings vs Average Rating')
