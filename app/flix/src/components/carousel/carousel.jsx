@@ -1,4 +1,3 @@
-// src/components/carousel/Carousel.js
 import React from "react";
 import Card from "../card/card";
 import AveRating from "../../assets/graphs/average_rating_distribution.png";
@@ -28,7 +27,6 @@ const Carousel = () => {
 			text: "Relation between movie length and average rating.",
 			imageUrl: MovieLenVAverage,
 		},
-
 		{
 			title: "Ratings Distribution",
 			text: "Distribution of ratings.",
@@ -62,9 +60,9 @@ const Carousel = () => {
 	];
 
 	return (
-		<div className="carousel carousel-center max-w-md p-4 space-x-4 bg-neutral rounded-box border-2 shadow-xl border-accent">
+		<div className="carousel max-w-80 p-4 space-x-4 bg-neutral rounded-box border-2 shadow-xl border-accent">
 			{cardsData.map((card, index) => (
-				<div className="carousel-item " key={index}>
+				<div className="carousel-item max-w-xs" key={index}>
 					<Card title={card.title} text={card.text} imageUrl={card.imageUrl} />
 				</div>
 			))}

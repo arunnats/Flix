@@ -2,8 +2,8 @@ import React from "react";
 
 const Card = ({ title, text, imageUrl }) => {
 	return (
-		<div className="card card-compact w-96 bg-base-100 shadow-xl">
-			<figure className=" overflow-hidden">
+		<div className="card card-compact max-w-xs bg-base-100 shadow-xl">
+			<figure className="overflow-hidden">
 				<img
 					className="w-full h-full object-cover"
 					src={imageUrl}

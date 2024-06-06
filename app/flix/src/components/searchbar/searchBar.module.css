@@ -5,9 +5,11 @@
 	border-radius: 10px;
 	padding: 0 15px;
 	box-shadow: 0px 0px 8px #ddd;
-	background-color: white;
+	background-color: #25233d;
 	display: flex;
 	align-items: center;
+	position: relative; /* Ensure it respects the stacking context */
+	z-index: 40;
 }
 
 input {
@@ -24,5 +26,5 @@ input:focus {
 }
 
 #searchIcon {
-	color: royalblue;
+	color: #e30c32;
 }

@@ -5,6 +5,7 @@ import SearchBar from "./components/searchbar/searchBar";
 import SearchResultsList from "./components/searchbar/searchResultsList";
 import Results from "./components/results/results";
 import Hero from "./components/hero/hero";
+import Footer from "./components/footer/footer";
 import DataVisComp from "./components/datavis/datavis";
 import axios from "axios";
 
@@ -31,21 +32,26 @@ function App() {
 				<Hero />
 				<div className="flex flex-col w-full md:w-96 mx-auto items-center">
 					<br />
-					<div className="search-bar-container w-full flex flex-col justify-center items-center">
+					<div className="search-bar-container w-full flex flex-col justify-center items-center ">
 						<SearchBar setResults={setResults} />
 						{results && results.length > 0 && (
 							<SearchResultsList
 								results={results}
 								onResultClick={getRecommendations}
-								className="bg-white shadow-lg rounded-lg overflow-hidden"
+								className="bg-white shadow-lg rounded-lg overflow-hidden absolute z-50"
 							/>
 						)}
 						<br />
-						<Results className="relative" recommendations={recommendations} />
+						<Results
+							className="relative z-40"
+							recommendations={recommendations}
+						/>
 					</div>
 					<br />
 					<DataVisComp />
 				</div>
+				<br />
+				<Footer />
 			</div>
 		</>
 	);
