@@ -25,6 +25,17 @@ const SearchAndResults = () => {
 		}
 	};
 
+	const getRandom = async () => {
+		try {
+			const response = await axios.get(`http://127.0.0.1:8000/random-movies/`);
+			const randomTitles = response.data.random_movies;
+			console.log(randomTitles);
+			setRecommendations(randomTitles);
+		} catch (error) {
+			console.error("Error fetching recommendations:", error);
+		}
+	};
+
 	return (
 		<div className="search-bar-container w-full flex flex-col justify-center items-center ">
 			<SearchBar
@@ -41,6 +52,10 @@ const SearchAndResults = () => {
 			)}
 			<br />
 			<Results className="relative z-40" recommendations={recommendations} />
+			<br />
+			<button className="btn btn-primary" onClick={getRandom}>
+				Get Random Movies
+			</button>
 		</div>
 	);
 };

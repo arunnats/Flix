@@ -7,12 +7,63 @@ const Navbar = () => {
 	return (
 		<div className="navbar bg-neutral	">
 			<div className="navbar-start">
+				<div className="dropdown">
+					<div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							className="h-5 w-5"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="2"
+								d="M4 6h16M4 12h8m-8 6h16"
+							/>
+						</svg>
+					</div>
+					<ul
+						tabIndex={0}
+						className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 justify-start align-top"
+					>
+						<li>
+							<a
+								href="https://www.arunnats.com/"
+								className="btn btn-ghost text-m"
+							>
+								Recommendations
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://www.arunnats.com/"
+								className="btn btn-ghost text-m"
+							>
+								Data Analysis
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://github.com/arunnats/Flix/"
+								className="btn btn-ghost text-xl"
+							>
+								<img
+									className="mx-1 h-8 max-w-lg"
+									src={githubLogo}
+									alt="Logo"
+								/>
+							</a>
+						</li>
+					</ul>
+				</div>
 				<a href="https://www.arunnats.com/" className="btn btn-ghost text-xl">
 					<img className="h-9 max-w-lg" src={logo} alt="Logo" />
 				</a>
 			</div>
 
-			<div className="navbar-end">
+			<div className="navbar-end hidden lg:flex">
 				<a href="https://www.arunnats.com/" className="btn btn-ghost text-m">
 					Recommendations
 				</a>
