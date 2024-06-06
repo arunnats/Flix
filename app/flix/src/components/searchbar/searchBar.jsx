@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import axios from "axios";
 
-const SearchBar = ({ setResults }) => {
-	const [input, setInput] = useState("");
-
+const SearchBar = ({ setResults, searchTerm, setSearchTerm }) => {
 	const fetchData = async (value) => {
 		console.log(value);
 		try {
@@ -19,13 +17,14 @@ const SearchBar = ({ setResults }) => {
 	};
 
 	const handleChange = (value) => {
-		setInput(value);
+		setSearchTerm(value);
 		if (value === "") {
 			setResults([]);
 		} else {
 			fetchData(value);
 		}
 	};
+
 	return (
 		<div className="flex flex-col mx-auto items-center w-80">
 			<h1 className="mb-5">Enter a Movie Title!</h1>
@@ -33,7 +32,7 @@ const SearchBar = ({ setResults }) => {
 				<FaSearch className="text-primary" />
 				<input
 					placeholder="Type to search..."
-					value={input}
+					value={searchTerm}
 					onChange={(e) => handleChange(e.target.value)}
 					className="bg-transparent border-none h-full text-lg w-full ml-2 focus:outline-none"
 				/>

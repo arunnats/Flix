@@ -9,6 +9,7 @@ import { useState } from "react";
 const SearchAndResults = () => {
 	const [results, setResults] = useState([]);
 	const [recommendations, setRecommendations] = useState([]);
+	const [searchTerm, setSearchTerm] = useState("");
 
 	const getRecommendations = async (result) => {
 		try {
@@ -17,6 +18,8 @@ const SearchAndResults = () => {
 			);
 			const recommendationTitles = Object.keys(response.data.Correlation);
 			setRecommendations(recommendationTitles);
+			setSearchTerm("");
+			setResults([]);
 		} catch (error) {
 			console.error("Error fetching recommendations:", error);
 		}
@@ -24,7 +27,11 @@ const SearchAndResults = () => {
 
 	return (
 		<div className="search-bar-container w-full flex flex-col justify-center items-center ">
-			<SearchBar setResults={setResults} />
+			<SearchBar
+				setResults={setResults}
+				searchTerm={searchTerm}
+				setSearchTerm={setSearchTerm}
+			/>
 			{results && results.length > 0 && (
 				<SearchResultsList
 					results={results}
