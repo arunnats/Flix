@@ -5,7 +5,7 @@ import SearchBar from "./components/searchbar/searchBar";
 import SearchResultsList from "./components/searchbar/searchResultsList";
 import Results from "./components/results/results";
 import Hero from "./components/hero/hero";
-import dataVisComp from "./components/stat/stat";
+import DataVisComp from "./components/datavis/datavis";
 import axios from "axios";
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
 						<Results recommendations={recommendations} />
 					)}
 					<br />
-					<dataVisComp />
+					<DataVisComp />
 					<br />
 					<div className="search-bar-container">
 						<SearchBar setResults={setResults} />
