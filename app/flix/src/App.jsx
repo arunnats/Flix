@@ -4,6 +4,8 @@ import Navbar from "./components/navbar/Navbar";
 import SearchBar from "./components/searchbar/searchBar";
 import SearchResultsList from "./components/searchbar/searchResultsList";
 import Results from "./components/results/results";
+import Hero from "./components/hero/hero";
+import dataVisComp from "./components/stat/stat";
 import axios from "axios";
 
 function App() {
@@ -24,22 +26,26 @@ function App() {
 
 	return (
 		<>
-			<Navbar />
-			<div className="flex flex-col w-96 mx-auto items-center">
-				<h1 className="text-4xl font-bold mt-10">Recommend Movies</h1>
-				<br />
-				{recommendations && recommendations.length > 0 && (
-					<Results recommendations={recommendations} />
-				)}
-				<br />
-				<div className="search-bar-container">
-					<SearchBar setResults={setResults} />
-					{results && results.length > 0 && (
-						<SearchResultsList
-							results={results}
-							onResultClick={getRecommendations}
-						/>
+			<div className="bg-base-100 min-h-screen">
+				<Navbar />
+				<Hero />
+				<div className="flex flex-col w-96 mx-auto items-center">
+					<br />
+					{recommendations && recommendations.length > 0 && (
+						<Results recommendations={recommendations} />
 					)}
+					<br />
+					<dataVisComp />
+					<br />
+					<div className="search-bar-container">
+						<SearchBar setResults={setResults} />
+						{results && results.length > 0 && (
+							<SearchResultsList
+								results={results}
+								onResultClick={getRecommendations}
+							/>
+						)}
+					</div>
 				</div>
 			</div>
 		</>

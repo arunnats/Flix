@@ -28,13 +28,17 @@ const SearchBar = ({ setResults }) => {
 		}
 	};
 	return (
-		<div className={styles.inputWrapper}>
-			<FaSearch id={styles.searchIcon} />
-			<input
-				placeholder="Type to search..."
-				value={input}
-				onChange={(e) => handleChange(e.target.value)}
-			/>
+		<div className="flex flex-col mx-auto items-center">
+			<h1 className="mb-5">Enter a Movie Title!</h1>
+			<div className={styles.inputWrapper}>
+				<FaSearch id={styles.searchIcon} />
+
+				<input
+					placeholder="Type to search..."
+					value={input}
+					onChange={(e) => handleChange(e.target.value)}
+				/>
+			</div>
 		</div>
 	);
 };

@@ -1,10 +1,11 @@
 // Navbar.jsx
 import React from "react";
 import logo from "../../assets/Logo.png";
+import githubLogo from "../../assets/icons8-github.svg";
 
 const Navbar = () => {
 	return (
-		<div className="navbar bg-base-100">
+		<div className="navbar bg-neutral	">
 			<div className="navbar-start">
 				<a href="https://www.arunnats.com/" className="btn btn-ghost text-xl">
 					<img className="h-9 max-w-lg" src={logo} alt="Logo" />
@@ -12,7 +13,20 @@ const Navbar = () => {
 			</div>
 
 			<div className="navbar-end">
-				<label className="flex cursor-pointer gap-2">
+				<a href="https://www.arunnats.com/" className="btn btn-ghost text-m">
+					Recommendations
+				</a>
+				<a href="https://www.arunnats.com/" className="btn btn-ghost text-m">
+					Data Analysis
+				</a>
+				<a
+					href="https://github.com/arunnats/Flix/"
+					className="btn btn-ghost text-xl"
+				>
+					<img className="mx-1 h-8 max-w-lg" src={githubLogo} alt="Logo" />
+				</a>
+
+				{/* <label className="flex cursor-pointer gap-2">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="20"
@@ -45,7 +59,7 @@ const Navbar = () => {
 					>
 						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
 					</svg>
-				</label>
+				</label> */}
 			</div>
 		</div>
 	);
