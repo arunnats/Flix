@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import axios from "axios";
-import styles from "./searchBar.module.css";
 
 const SearchBar = ({ setResults }) => {
 	const [input, setInput] = useState("");
@@ -28,15 +27,15 @@ const SearchBar = ({ setResults }) => {
 		}
 	};
 	return (
-		<div className="flex flex-col mx-auto items-center min-w-80">
+		<div className="flex flex-col mx-auto items-center w-80">
 			<h1 className="mb-5">Enter a Movie Title!</h1>
-			<div className={styles.inputWrapper}>
-				<FaSearch id={styles.searchIcon} />
-
+			<div className="w-full h-10 border-none rounded-lg px-4 shadow-sm bg-white flex items-center">
+				<FaSearch className="text-blue-500" />
 				<input
 					placeholder="Type to search..."
 					value={input}
 					onChange={(e) => handleChange(e.target.value)}
+					className="bg-transparent border-none h-full text-lg w-full ml-2 focus:outline-none"
 				/>
 			</div>
 		</div>

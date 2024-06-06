@@ -30,6 +30,7 @@ function App() {
 			<div className="bg-base-100 min-h-screen relative">
 				<Navbar />
 				<Hero />
+
 				<div className="flex flex-col w-full md:w-96 mx-auto items-center">
 					<br />
 					<div className="search-bar-container w-full flex flex-col justify-center items-center ">
@@ -38,7 +39,7 @@ function App() {
 							<SearchResultsList
 								results={results}
 								onResultClick={getRecommendations}
-								className="bg-white shadow-lg rounded-lg overflow-hidden absolute z-50"
+								className="bg-white shadow-lg rounded-lg overflow-hidden absolute z-9999"
 							/>
 						)}
 						<br />
@@ -50,7 +51,7 @@ function App() {
 					<br />
 					<DataVisComp />
 				</div>
-				<br />
+
 				<Footer />
 			</div>
 		</>

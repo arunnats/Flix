@@ -55,7 +55,7 @@ const Stat = () => {
 				iconComponent={userIcon}
 				initialValue={0}
 				targetValue={43897}
-				text="Total Users"
+				text="Total Reviews"
 			/>
 		</div>
 	);
