@@ -25,7 +25,7 @@ plt.rcParams.update({
     'figure.facecolor': '#25233D',
     'grid.color': '#25233D'
 })
-colors = ["#E30C32", "#070521"]
+colors = ["#E30C32", "#E30C32"]
 
 def apply_plot_style():
     SIZE_DEFAULT = 10
@@ -60,6 +60,7 @@ ratings_stats['rating'].hist(bins=70, color=colors[1], ax=ax)
 ax.set_title('Distribution of Ratings')
 ax.set_xlabel('Rating')
 ax.set_ylabel('Frequency')
+ax.set_facecolor('#25233D')
 ax.grid(False)
 plt.tight_layout()
 plt.savefig('ratings_distribution.png', dpi=300)
@@ -107,6 +108,7 @@ ax.set_xlabel('Movie Title')
 ax.set_ylabel('Weighted Rating')
 ax.set_xticks(range(10))
 ax.set_xticklabels(top_10_weighted.index, rotation=70, fontsize=6)
+ax.set_facecolor('#25233D')
 ax.grid(False)
 plt.tight_layout()
 plt.savefig('top_10_weighted_movies.png', dpi=300)
@@ -122,6 +124,7 @@ user_stats['average_rating'].hist(bins=100, color=colors[1], ax=ax)
 ax.set_title('Distribution of Average Rating Given by Users')
 ax.set_xlabel('Average Rating')
 ax.set_ylabel('Frequency')
+ax.set_facecolor('#25233D')
 ax.grid(False)
 plt.tight_layout()
 plt.savefig('average_rating_distribution.png', dpi=300)
