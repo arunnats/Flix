@@ -29,8 +29,8 @@ const SearchBar = ({ setResults }) => {
 	return (
 		<div className="flex flex-col mx-auto items-center w-80">
 			<h1 className="mb-5">Enter a Movie Title!</h1>
-			<div className="w-full h-10 border-none rounded-lg px-4 shadow-sm bg-white flex items-center">
-				<FaSearch className="text-blue-500" />
+			<div className="w-full h-10 rounded-lg border-2 shadow-xl border-accent px-4 bg-neutral flex items-center">
+				<FaSearch className="text-primary" />
 				<input
 					placeholder="Type to search..."
 					value={input}
