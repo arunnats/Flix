@@ -57,11 +57,11 @@ async def get_usage(movie_title: str):
     
     # Sort by correlation in descending order
     corr_movie_df = corr_movie_df.sort_values(by='Correlation', ascending=False)
-    print(f"Final recommendation result:\n{corr_movie_df.head()}")
+    print(f"Final recommendation result:\n{corr_movie_df.head(10)}")
     
-    return corr_movie_df.head().to_dict()
+    return corr_movie_df.head(10).to_dict()
 
 @app.get("/random-movies/")
 async def get_random_movies():
-    random_movies = random.sample(list(app.state.corr_matrix.columns), 5)
+    random_movies = random.sample(list(app.state.corr_matrix.columns), 10)
     return {"random_movies": random_movies}

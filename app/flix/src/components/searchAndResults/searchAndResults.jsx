@@ -50,7 +50,6 @@ const SearchAndResults = () => {
 				<SearchResultsList
 					results={results}
 					onResultClick={getRecommendations}
-					className="bg-white shadow-lg rounded-lg overflow-hidden absolute z-9999"
 				/>
 			)}
 			<br />
