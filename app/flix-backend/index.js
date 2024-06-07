@@ -4,7 +4,6 @@ const mysql = require("mysql2/promise");
 const app = express();
 app.use(express.json());
 
-// MySQL connection pool
 const pool = mysql.createPool({
 	host: "localhost",
 	user: "root",
@@ -15,7 +14,6 @@ const pool = mysql.createPool({
 	queueLimit: 0,
 });
 
-// Simple in-memory cache
 const cache = new Map();
 
 app.use((req, res, next) => {
@@ -49,7 +47,6 @@ app.get("/search", async (req, res) => {
 			[`${query}%`]
 		);
 
-		// Update cache
 		cache.set(query, results);
 
 		res.json(results);
@@ -59,7 +56,6 @@ app.get("/search", async (req, res) => {
 	}
 });
 
-// Clear cache periodically
 setInterval(() => {
 	cache.clear();
 	console.log("Cache cleared");
