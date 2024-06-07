@@ -25,7 +25,7 @@ const Hero = () => {
 					</div>
 				</div>
 				<br />
-				<h1 className=" mb-5 text-3xl md:text-5xl text-accent font-custom ">
+				<h1 className=" my-5 text-3xl md:text-5xl text-accent font-custom ">
 					Get Recommendations
 				</h1>
 				<h2 className=" mb-1 text-2xl md:text-3xl text-accent font-custom ">

@@ -11,8 +11,10 @@ const Card = ({ title, text, imageUrl }) => {
 				/>
 			</figure>
 			<div className="card-body flex flex-col justify-between">
-				<h2 className="card-title">{title}</h2>
-				<p>{text}</p>
+				<h2 className="text-2xl text-center card-title text-accent font-customRoboto">
+					{title}
+				</h2>
+				<p className="text-l text-justify font-customRoboto">{text}</p>
 			</div>
 		</div>
 	);

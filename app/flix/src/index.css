@@ -3,6 +3,11 @@
 	src: url("./assets/blockletter.regular.otf") format("truetype");
 }
 
+@font-face {
+	font-family: custom-roboto;
+	src: url("./assets/Roboto-Medium.ttf") format("truetype");
+}
+
 html {
 	scroll-behavior: smooth;
 }

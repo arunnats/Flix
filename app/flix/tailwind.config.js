@@ -5,6 +5,7 @@ export default {
 		extend: {
 			fontFamily: {
 				custom: ["custom-font", "sans-serif"],
+				customRoboto: ["custom-roboto", "sans-serif"],
 			},
 		},
 	},
