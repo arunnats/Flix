@@ -1,4 +1,4 @@
-# <div align="center">Flix</div>
+# <div align="center"><span style="font-size: 36px;">Flix</span></div>
 
 ![Screenshot 2024-06-07 123320](https://github.com/arunnats/Flix/assets/118368673/868c46a5-b1a3-42e4-9212-5b7c4047f031)
 
