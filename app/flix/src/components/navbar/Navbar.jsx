@@ -5,7 +5,7 @@ import githubLogo from "../../assets/icons8-github.svg";
 
 const Navbar = () => {
 	return (
-		<div className="navbar bg-neutral	">
+		<div className="navbar bg-neutral">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -29,18 +29,12 @@ const Navbar = () => {
 						className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-52 justify-start align-top"
 					>
 						<li>
-							<a
-								href="https://www.arunnats.com/"
-								className="btn btn-ghost text-m"
-							>
+							<a href="#recommendations" className="btn btn-ghost text-m">
 								Recommendations
 							</a>
 						</li>
 						<li>
-							<a
-								href="https://www.arunnats.com/"
-								className="btn btn-ghost text-m"
-							>
+							<a href="#data-analysis" className="btn btn-ghost text-m">
 								Data Analysis
 							</a>
 						</li>
@@ -64,10 +58,10 @@ const Navbar = () => {
 			</div>
 
 			<div className="navbar-end hidden lg:flex">
-				<a href="https://www.arunnats.com/" className="btn btn-ghost text-m">
+				<a href="#recommendations" className="btn btn-ghost text-m">
 					Recommendations
 				</a>
-				<a href="https://www.arunnats.com/" className="btn btn-ghost text-m">
+				<a href="#data-analysis" className="btn btn-ghost text-m">
 					Data Analysis
 				</a>
 				<a

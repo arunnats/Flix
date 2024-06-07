@@ -17,7 +17,7 @@ const Hero = () => {
 					<br />
 
 					<h1 className="mb-6 mt-9 text-8xl font-bold font-custom">flix</h1>
-					<p className="mb-3 mt-9 text-l md:text-xl text-accent ">
+					<p className="mb-3 mt-9 text-l md:text-xl text-accent font-custom">
 						Instant movie recommendation model based on:
 					</p>
 					<div className="my-3">

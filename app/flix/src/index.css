@@ -3,6 +3,10 @@
 	src: url("./assets/blockletter.regular.otf") format("truetype");
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

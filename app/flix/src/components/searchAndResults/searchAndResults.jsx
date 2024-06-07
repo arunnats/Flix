@@ -37,7 +37,10 @@ const SearchAndResults = () => {
 	};
 
 	return (
-		<div className="search-bar-container w-full flex flex-col justify-center items-center ">
+		<div
+			className="search-bar-container w-full flex flex-col justify-center items-center "
+			id="recommendations"
+		>
 			<SearchBar
 				setResults={setResults}
 				searchTerm={searchTerm}
