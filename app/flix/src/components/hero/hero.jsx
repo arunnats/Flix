@@ -16,16 +16,21 @@ const Hero = () => {
 				<div className="max-w-md mx-auto">
 					<br />
 
-					<h1 className="mb-5 text-5xl font-bold">FLiX</h1>
-					<p className="mb-5 text-xl text-accent">
+					<h1 className="mb-6 mt-9 text-8xl font-bold font-custom">flix</h1>
+					<p className="mb-3 mt-9 text-l md:text-xl text-accent ">
 						Instant movie recommendation model based on:
 					</p>
 					<div className="my-3">
 						<Stat />
 					</div>
-					<button className="btn btn-primary">Start Watching!</button>
 				</div>
-				<h1 className=" mb-5 text-6xl text-accent">Enter a Movie Title </h1>
+				<br />
+				<h1 className=" mb-5 text-3xl md:text-5xl text-accent font-custom ">
+					Get Recommendations
+				</h1>
+				<h2 className=" mb-1 text-2xl md:text-3xl text-accent font-custom ">
+					Enter a Movie Title{""}
+				</h2>
 				<SearchAndResults />
 			</div>
 			<div className="absolute bottom-0 w-full h-96 bg-gradient-to-b from-transparent to-base-100">

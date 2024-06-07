@@ -1,3 +1,8 @@
+@font-face {
+	font-family: custom-font;
+	src: url("./assets/blockletter.regular.otf") format("truetype");
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
