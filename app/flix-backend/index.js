@@ -1,14 +1,15 @@
 const express = require("express");
 const mysql = require("mysql2/promise");
+require("dotenv").config();
 
 const app = express();
 app.use(express.json());
 
 const pool = mysql.createPool({
-	host: "localhost",
-	user: "root",
-	password: "nats",
-	database: "flix",
+	host: process.env.DB_HOST,
+	user: process.env.DB_USER,
+	password: process.env.DB_PASSWORD,
+	database: process.env.DB_DATABASE,
 	waitForConnections: true,
 	connectionLimit: 100,
 	queueLimit: 0,
