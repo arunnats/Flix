@@ -16,7 +16,7 @@ const SearchAndResults = () => {
 	const getRecommendations = async (result) => {
 		try {
 			const response = await axios.get(
-				`${apiUrl}/recommend/?movie_title=${result}`
+				`https://flix-fastapi-bxjw47rqtq-uc.a.run.app/recommend/?movie_title=${result}`
 			);
 			const recommendationTitles = Object.keys(response.data.Correlation);
 			setRecommendations(recommendationTitles);
@@ -29,7 +29,9 @@ const SearchAndResults = () => {
 
 	const getRandom = async () => {
 		try {
-			const response = await axios.get(`${apiUrl}/random-movies/`);
+			const response = await axios.get(
+				`https://flix-fastapi-bxjw47rqtq-uc.a.run.app/random-movies/`
+			); //updated urls
 			const randomTitles = response.data.random_movies;
 			console.log(randomTitles);
 			setRecommendations(randomTitles);
