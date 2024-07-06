@@ -11,10 +11,12 @@ const SearchAndResults = () => {
 	const [recommendations, setRecommendations] = useState([]);
 	const [searchTerm, setSearchTerm] = useState("");
 
+	const apiUrl = import.meta.env.VITE_API_URL;
+
 	const getRecommendations = async (result) => {
 		try {
 			const response = await axios.get(
-				`http://127.0.0.1:8000/recommend/?movie_title=${result}`
+				`${apiUrl}/recommend/?movie_title=${result}`
 			);
 			const recommendationTitles = Object.keys(response.data.Correlation);
 			setRecommendations(recommendationTitles);
@@ -27,7 +29,7 @@ const SearchAndResults = () => {
 
 	const getRandom = async () => {
 		try {
-			const response = await axios.get(`http://127.0.0.1:8000/random-movies/`);
+			const response = await axios.get(`${apiUrl}/random-movies/`);
 			const randomTitles = response.data.random_movies;
 			console.log(randomTitles);
 			setRecommendations(randomTitles);
