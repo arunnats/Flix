@@ -4,10 +4,9 @@ import axios from "axios";
 
 const SearchBar = ({ setResults, searchTerm, setSearchTerm }) => {
 	const fetchData = async (value) => {
-		console.log(value);
 		try {
 			const response = await axios.get(
-				`https://flix-427215.el.r.appspot.com/search?q=${value}`
+				`${import.meta.env.VITE_NODE_URL}/search?q=${value}`
 			);
 			console.log(response.data);
 			setResults(response.data);
