@@ -2,6 +2,8 @@
 
 ![Screenshot 2024-06-07 123320](https://github.com/arunnats/Flix/assets/118368673/868c46a5-b1a3-42e4-9212-5b7c4047f031)
 
+https://flix.arunnats.com/
+
 Flix is a movie recommender app which utilizes the MovieLens database to provide personalized movie recommendations based on user preferences. The app employs a collaborative filtering technique, leveraging a correlation matrix derived from user ratings. It selects the top-rated movies and those with a substantial number of reviews to build a correlation matrix, which forms the backbone of the recommendation engine.
 
 ## Machine Learning and Python 
