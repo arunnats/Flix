@@ -19,8 +19,8 @@ app.add_middleware(
 def load_precomputed_data():
     global app
     print("Loading precomputed correlation matrix and ratings...")
-    app.state.corr_matrix = pd.read_pickle('./pickles/correlation_matrix.pkl')
-    app.state.ratings = pd.read_pickle('./pickles/ratings.pkl')
+    app.state.corr_matrix = pd.read_pickle('./correlation_matrix.pkl')
+    app.state.ratings = pd.read_pickle('./ratings.pkl')
     print("Precomputed data loaded.")
 
 @asynccontextmanager
